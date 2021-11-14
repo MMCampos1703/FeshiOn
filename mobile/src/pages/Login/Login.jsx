@@ -1,34 +1,22 @@
 import React, {useState} from 'react'
 import { View, TextInput, Button, StyleSheet, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import api from '../../service/service'
 
 const Login = ({navigation}) => {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [fieldErrors, setFieldErrors] = useState([])
+    const [error, setError] = useState(null)
 
     const onEnter = () => {
-        const realUsername = 'malaco'
-        const realPassword = '123'
-
-        let errors = []
-         if(username !== realUsername) {
-            errors.push({field: 'username', message: 'Nome de usuário inválido.'})
-        } 
-        if(password !== realPassword) {
-            errors.push({field: 'password', message: 'Senha inválida.'})
-        }
-
-        if(errors.length > 0) {
-            setFieldErrors(errors)
-        } else {
-            if(fieldErrors.length > 0) {
-                setFieldErrors(errors)
-            }
-            setUsername('')
+        api.post('/login/user', {email, password}).then(() => {
+            setEmail('')
             setPassword('')
+            setError(null)
             navigation.navigate('Main')
-        }
+        }).catch(error => {
+            setError(error?.response?.data?.message)
+        })
     }
 
     const handleRegisterPress = () => {
@@ -44,20 +32,20 @@ const Login = ({navigation}) => {
             </View>
             <TextInput
                 style={styles.input}
-                onChangeText={setUsername}
-                value={username}
+                onChangeText={setEmail}
+                value={email}
                 placeholder='E-mail'
             />
-            <Text style={styles.textError}>{fieldErrors.find(error => error.field === 'username')?.message}</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={setPassword}
                 value={password}
+                secureTextEntry={true}
                 placeholder='Senha'
             />
-            <Text style={styles.textError}>{fieldErrors.find(error => error.field === 'password')?.message}</Text>
-            <Button onPress={onEnter} title='ENTRAR'/>
-            <TouchableOpacity style={{marginTop: 30}} onPress={handleRegisterPress}>
+            <Button onPress={onEnter} style={{backgroundColor: 'red'}} title='ENTRAR'/>
+            <Text style={styles.textError}>{error}</Text>
+            <TouchableOpacity onPress={handleRegisterPress}>
                 <Text>Cadastre-se aqui</Text>
             </TouchableOpacity>
         </View>
@@ -68,7 +56,8 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         borderWidth: 1,
-        padding: 10
+        padding: 10,
+        marginVertical: 8 
     },
     page: {
         padding: 30,

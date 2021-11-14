@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { View, TextInput, Button, StyleSheet, Text  } from 'react-native'
 import api from '../../service/service'
 
-const validateEmail = (username) => {
+const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return re.test(String(username).toLowerCase())
+    return re.test(String(email).toLowerCase())
 }
 
 const Register = ({navigation}) => {
     const [nickname, setNickname] = useState('')
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [fieldErrors, setFieldErrors] = useState([])
@@ -19,10 +19,10 @@ const Register = ({navigation}) => {
         if(nickname === '') {
             errors.push({field: 'nickname', message: 'Campo não pode ser vazio.'})
         }
-        if(username === '') {
-            errors.push({field: 'username', message: 'Campo não pode ser vazio.'})
-        } else if(!validateEmail(username)) {
-            errors.push({field: 'username', message: 'Não é um email válido.'})
+        if(email === '') {
+            errors.push({field: 'email', message: 'Campo não pode ser vazio.'})
+        } else if(!validateEmail(email)) {
+            errors.push({field: 'email', message: 'Não é um email válido.'})
         }
 
         if(password === '' || confirmPassword === '') {
@@ -44,12 +44,10 @@ const Register = ({navigation}) => {
                 setFieldErrors(errors)
             }
 
-            api.post('/register/user', {nickname, username, password}).then(() => {
+            api.post('/register/user', {nickname, email, password}).then(() => {
                 navigation.navigate('Login')
-                // setUsername('')
-                // setPassword('')
-                // setConfirmPassword('')
-                // setNickname('')
+            }).catch(error => {
+                setFieldErrors([{field: 'system', message: error?.response?.data?.message}])
             })
             
         }
@@ -60,19 +58,21 @@ const Register = ({navigation}) => {
             <View style={{alignItems: 'center', marginBottom: 70}}>
                 <Text style={{fontWeight: 'bold', fontSize: 30}}>Registrar</Text>
             </View>
+            <Text style={styles.textError}>{fieldErrors.find(error => error.field === 'system')?.message}</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={setNickname}
                 value={nickname}
                 placeholder='Apelido'
             />
+            <Text style={styles.textError}>{fieldErrors.find(error => error.field === 'nickname')?.message}</Text>
             <TextInput
                 style={styles.input}
-                onChangeText={setUsername}
-                value={username}
+                onChangeText={setEmail}
+                value={email}
                 placeholder='E-mail'
             />
-            <Text style={styles.textError}>{fieldErrors.find(error => error.field === 'username')?.message}</Text>
+            <Text style={styles.textError}>{fieldErrors.find(error => error.field === 'email')?.message}</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={setPassword}

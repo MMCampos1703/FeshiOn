@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90eb475c-746a-43c9-8235-9f9e8813d897" name="Default Changelist" comment="" />
+    <list default="true" id="90eb475c-746a-43c9-8235-9f9e8813d897" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/back/docs/sql/000-user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back/docs/sql/000-user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/resource/register.resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/resource/register.resource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/service/register.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/service/register.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/pages/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/pages/Login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/pages/Register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/pages/Register/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/service/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/service/service.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
