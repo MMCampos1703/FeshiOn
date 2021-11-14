@@ -12,5 +12,5 @@ process.on('uncaughtException', (exception) => console.error(exception))
 app.post('/register/user', RegisterResource.registerUser)
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at ${process.env.APP_URL}:${port}`)
 })
