@@ -46,7 +46,7 @@ const Login = ({navigation}) => {
             <Button onPress={onEnter} style={{backgroundColor: 'red'}} title='ENTRAR'/>
             <Text style={styles.textError}>{error}</Text>
             <TouchableOpacity onPress={handleRegisterPress}>
-                <Text>Cadastre-se aqui</Text>
+                <Text style={styles.link}>Cadastre-se aqui</Text>
             </TouchableOpacity>
         </View>
     )
@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
     textError: {
         color: 'red',
         marginVertical: 8
+    },
+    link: {
+        color: '#4967FF',
+        marginLeft: 2
     }
 })
 

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90eb475c-746a-43c9-8235-9f9e8813d897" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/docs/sql/000-user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back/docs/sql/000-user.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/resource/register.resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/resource/register.resource.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server.js" afterDir="false" />
