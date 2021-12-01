@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { View, TextInput, Button, StyleSheet, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import api from '../../service/service'
+import { storeUser } from '../../storage/async'
 
 const Login = ({navigation}) => {
     const [email, setEmail] = useState('')
@@ -9,7 +10,8 @@ const Login = ({navigation}) => {
     const [error, setError] = useState(null)
 
     const onEnter = () => {
-        api.post('/login/user', {email, password}).then(() => {
+        api.post('/login/user', {email, password}).then((res) => {
+            storeUser(res.data)
             setEmail('')
             setPassword('')
             setError(null)

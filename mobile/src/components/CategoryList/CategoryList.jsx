@@ -35,7 +35,7 @@ const CategoryList = () => {
                 style={{alignItems: 'center', backgroundColor: '#2D9CDB', height: 100, justifyContent: 'center'}}
             >
                 <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>VEJA O QUE ESTÁ EM ALTA</Text>
-                <Text style={{color: 'white'}}>Mais acessados</Text>
+                <Text style={{color: 'white'}}>Mais relevantes</Text>
             </TouchableOpacity>
             <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
                 {categoryObjectList.map(item => 

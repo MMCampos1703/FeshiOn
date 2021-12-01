@@ -8,7 +8,7 @@
         "splash": {
             "image": "./assets/splash.png",
             "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
+            "backgroundColor": "#9AC4F8"
         },
             "updates": {
             "fallbackToCacheTimeout": 0
@@ -17,16 +17,34 @@
             "**/*"
         ],
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "config": {
+                "googleMobileAdsAppId": "ca-app-pub-3484834519910203~6742757387"
+            }
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
+            },
+            "config": {
+                "googleMobileAdsAppId": "ca-app-pub-3484834519910203~6742757387"
             }
         },
         "web": {
             "favicon": "./assets/favicon.png"
-        }
+        },
+        "plugins": [
+            [
+                "expo-image-picker",
+                {
+                    "photosPermission": "O app está pedindo permissão para acessar sua galeria de fotos."
+                },
+                "expo-ads-admob",
+                {
+                "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+                }
+            ]
+        ]
     }
 }

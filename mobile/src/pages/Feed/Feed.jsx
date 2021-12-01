@@ -1,42 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import FeedItem from './components/FeedItem/FeedItem'
-import { ScrollView, Image, View, Text, TouchableOpacity } from 'react-native'
-
-const categoryObjectList = [
-    {
-        id: 1,
-        name: 'Sobretudo de onça',
-        image: <Image source={require('../../assets/woman.png')} style={{width: '100%', height: 120}}/>
-    },
-    {
-        id: 2,
-        name: 'Casaco Chanel',
-        image: <Image source={require('../../assets/women.png')} style={{width: '100%', height: 120}}/>
-    },
-    {
-        id: 3,
-        name: 'Casaco Gucci',
-        image: <Image source={require('../../assets/women.png')} style={{width: '100%', height: 120}}/>
-    },
-    {
-        id: 4,
-        name: 'Sobretudo de macaco',
-        image: <Image source={require('../../assets/woman.png')} style={{width: '100%', height: 120}}/>
-    }
-]
+import { ScrollView, ActivityIndicator, Text, View } from 'react-native'
+import api from '../../service/service'
 
 const Feed = ({ route }) => {
     const { category } = route.params
+    const [feed, setFeed] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        load()
+    }, [])
+
+    const load = async () => {
+        let items = await api.get(`/item/get-by-category/${category}`)
+        setFeed(items.data)
+        setLoading(false)
+    }
 
     return (
-        <View>
-            <Text>{category}</Text>
-            <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
-                {categoryObjectList.map(item => 
-                    <FeedItem key={item.id} name={item.name} image={item.image} value={item.id}/>
-                )}
-            </ScrollView>
-        </View>
+        <ScrollView contentContainerStyle={{ paddingBottom: 200, marginTop: 20}}>
+            {loading ? 
+                <ActivityIndicator size='large' color='#235fba' style={{marginTop: 50}}/> :
+                feed.length > 0 ?
+                    feed.map(item => 
+                        <FeedItem key={item.id} name={item.name} image={item.image64} 
+                            value={item.id} favorites={item.favorites}
+                            createdDate={item.created_at}
+                            reload={load}
+                        />
+                    )
+                :   <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}><Text>Nenhum dado para esta categoria.</Text></View>
+                
+            }
+        </ScrollView>
     )
 }
 

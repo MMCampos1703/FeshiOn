@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-// const localUrl = 'http://c331-2804-14d-1087-8360-a4b0-ae5c-b027-a79c.ngrok.io'
+const localUrl = 'http://192.168.0.194:4000'
 const prodUrl = 'https://back-fashion.herokuapp.com'
 
 const api = axios.create({
